@@ -1,0 +1,4 @@
+vbox
+====
+
+Vagrant boxes
