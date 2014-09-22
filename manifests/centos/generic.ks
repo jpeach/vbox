@@ -29,7 +29,7 @@ keyboard us
 lang en_US.UTF-8
 
 # Network information
-network --bootproto=dhcp --device=bootif --onboot=on
+network --bootproto=dhcp --onboot=on
 
 # SELinux configuration
 selinux --disabled
@@ -58,7 +58,7 @@ bootloader --location=mbr
 reboot --eject
 
 # Only install the group's mandatory packages, not the default selections.
-%packages
+%packages --ignoremissing
 %end
 
 %post

@@ -4,17 +4,31 @@
     "builders": [
         {
             "type": "virtualbox-iso",
-            "name": "centos7",
+            "name": "centos-7.0",
             "guest_os_type": "RedHat_64",
             "iso_url": "http://mirrors.sonic.net/centos/7.0.1406/isos/x86_64/CentOS-7.0-1406-x86_64-Minimal.iso",
             "iso_checksum": "e3afe3f1121d69c40cc23f0bafa05e5d",
             "iso_checksum_type": "md5",
             "ssh_username": "vagrant",
             "ssh_password": "vagrant",
-            "shutdown_command": "echo 'packer' | sudo -S shutdown -P now",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
             "http_directory": "manifests",
             "boot_command": [
-                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/generic.ks<enter>"
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/generic.ks<enter>"
+            ]
+        }, {
+            "type": "virtualbox-iso",
+            "name": "centos-6.5",
+            "guest_os_type": "RedHat_64",
+            "iso_url": "http://mirrors.sonic.net/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
+            "iso_checksum": "0d9dc37b5dd4befa1c440d2174e88a87",
+            "iso_checksum_type": "md5",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "http_directory": "manifests",
+            "boot_command": [
+                "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/generic.ks<enter>"
             ]
         }
     ],
@@ -23,10 +37,8 @@
         {
             "type": "shell",
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
-            "inline": [
-                "rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm",
-                "rpm -ihv http://download.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-1.noarch.rpm",
-                "yum install -y puppet"
+            "scripts": [
+                "manifests/centos/preinstall.sh"
             ]
         }, {
             "type": "puppet-masterless",
@@ -37,7 +49,8 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "output": "centos-7.0-x64-vbox.box"
+            "output": "{{.BuildName}}-x64-{{.Provider}}.box",
+            "compression_level": 9
         }
     ]
 }
