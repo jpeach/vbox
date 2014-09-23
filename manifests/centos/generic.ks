@@ -59,6 +59,11 @@ reboot --eject
 
 # Only install the group's mandatory packages, not the default selections.
 %packages --ignoremissing
+bzip2
+deltarpm
+kernel-devel
+kernel-headers
+yum-utils
 %end
 
 %post

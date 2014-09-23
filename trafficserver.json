@@ -37,6 +37,15 @@
         {
             "type": "shell",
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+            "inline": [
+                "yum install -y perl bzip2 gcc kernel-devel kernel-headers",
+                "yum upgrade -y",
+                "reboot",
+                "sleep 60"
+            ]
+        }, {
+            "type": "shell",
+            "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "scripts": [
                 "manifests/centos/preinstall.sh"
             ]
@@ -49,7 +58,7 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "output": "{{.BuildName}}-x64-{{.Provider}}.box",
+            "output": "boxes/{{.BuildName}}-x64-{{.Provider}}.box",
             "compression_level": 9
         }
     ]

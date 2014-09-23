@@ -32,3 +32,26 @@ echo Installing well-known vagrant SSH key ...
     chmod 600 .ssh/authorized_keys
     chown -R vagrant:vagrant .ssh
 )
+
+echo Installing VirtualBox guest additions ...
+(
+    cd ~vagrant
+    rm -f /var/log/vboxadd-install.log
+
+    if [ -r VBoxGuestAdditions.iso ] ; then
+        mount -o loop $(pwd)/VBoxGuestAdditions.iso /mnt
+
+        /mnt/VBoxLinuxAdditions.run --nox11
+
+        # If the build failed, puke some diagnostics ...
+        if [ "$?" -ne "0" ] ; then
+            cat /var/log/vboxadd-install.log
+            rpm -qa | grep kernel
+            echo kernel version is $(uname -r)
+            ls /lib/modules/$(uname -r)
+        fi
+
+        umount /mnt
+        rm VBoxGuestAdditions.iso
+    fi
+)
