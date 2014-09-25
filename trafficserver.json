@@ -4,6 +4,20 @@
     "builders": [
         {
             "type": "virtualbox-iso",
+            "name": "fedora-20",
+            "guest_os_type": "Fedora_64",
+            "iso_url": "http://download.fedoraproject.org/pub/fedora/linux/releases/20/Fedora/x86_64/iso/Fedora-20-x86_64-netinst.iso",
+            "iso_checksum": "376be7d4855ad6281cb139430606a782fd6189dcb01d7b61448e915802cc350f",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "http_directory": "manifests",
+            "boot_command": [
+                "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/fedora20.ks<enter>"
+            ]
+        }, {
+            "type": "virtualbox-iso",
             "name": "centos-7.0",
             "guest_os_type": "RedHat_64",
             "iso_url": "http://mirrors.sonic.net/centos/7.0.1406/isos/x86_64/CentOS-7.0-1406-x86_64-Minimal.iso",

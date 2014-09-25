@@ -1,0 +1,1 @@
+../centos/preinstall.sh
