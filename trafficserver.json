@@ -56,7 +56,7 @@
             "type": "shell",
             "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
             "inline": [
-                "yum install -y perl bzip2 gcc kernel-devel kernel-headers",
+                "yum install -y perl bzip2 gcc kernel-devel kernel-headers dkms",
                 "yum upgrade -y",
                 "reboot",
                 "sleep 60"

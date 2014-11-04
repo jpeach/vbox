@@ -64,6 +64,7 @@ deltarpm
 kernel-devel
 kernel-headers
 yum-utils
+dkms
 %end
 
 %post
