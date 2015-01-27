@@ -1,0 +1,39 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby sw=2 ts=2 et :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+$master = <<EOF
+EOF
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+  config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
+    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    v.customize ["modifyvm", :id, "--cpus", "2"]
+    v.customize ["modifyvm", :id, "--memory", "2048"]
+  end
+
+  config.vm.synced_folder ".", "/opt/home"
+  config.vm.provision :shell, inline: $master
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
+
+  config.vm.define "centos7" do |config|
+    config.vm.hostname = "centos-7"
+    config.vm.box = "jpeach/centos-7.0"
+  end
+
+  config.vm.define "fedora20" do |config|
+    config.vm.hostname = "fedora-20"
+    config.vm.box = "jpeach/fedora-20"
+  end
+
+  config.vm.define "fedora21" do |config|
+    config.vm.hostname = "fedora-21"
+    config.vm.box = "jpeach/fedora-21"
+  end
+
+end
