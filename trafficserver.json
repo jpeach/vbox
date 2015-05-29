@@ -4,6 +4,24 @@
     "builders": [
         {
             "type": "virtualbox-iso",
+            "name": "fedora-22",
+            "guest_os_type": "Fedora_64",
+            "iso_url": "http://mirror.symnds.com/distributions/fedora/releases/22/Server/x86_64/iso/Fedora-Server-netinst-x86_64-22.iso",
+            "iso_checksum": "9f1f2f19f75cc3b97da41878b5c86188fa8d27ed446bd97d9df615c137c77cfc",
+            "iso_checksum_type": "sha256",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_wait_timeout": "50000s",
+            "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+            "http_directory": "manifests",
+            "vboxmanage": [
+                [ "modifyvm", "{{.Name}}", "--memory", "1024" ]
+            ],
+            "boot_command": [
+                "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/fedora20.ks<enter>"
+            ]
+        }, {
+            "type": "virtualbox-iso",
             "name": "fedora-21",
             "guest_os_type": "Fedora_64",
             "iso_url": "http://download.fedoraproject.org/pub/fedora/linux/releases/21/Server/x86_64/iso/Fedora-Server-netinst-x86_64-21.iso",
