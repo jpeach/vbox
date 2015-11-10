@@ -65,6 +65,8 @@ reboot --eject
 
 # Only install the group's mandatory packages, not the default selections.
 %packages --ignoremissing
+-dhclient
+dhcp-client
 bzip2
 deltarpm
 kernel-devel

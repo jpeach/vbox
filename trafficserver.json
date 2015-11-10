@@ -2,7 +2,7 @@
   "builders": [
     {
       "boot_command": [
-        "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/fedora20.ks<enter>"
+        "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/fedora22.ks<enter>"
       ],
       "guest_os_type": "Fedora_64",
       "http_directory": "manifests",
