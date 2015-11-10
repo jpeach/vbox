@@ -6,6 +6,30 @@
       ],
       "guest_os_type": "Fedora_64",
       "http_directory": "manifests",
+      "iso_checksum": "32e0a15a1c71d0e2fd36a0af5b67a3b3af82976d2dfca0aefcb90d42f2ae6844",
+      "iso_checksum_type": "sha256",
+      "iso_url": "http://download.fedoraproject.org/pub/fedora/linux/releases/23/Server/x86_64/iso/Fedora-Server-netinst-x86_64-23.iso",
+      "name": "fedora-23",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
+      "ssh_password": "vagrant",
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "50000s",
+      "type": "virtualbox-iso",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "1024"
+        ]
+      ]
+    },
+    {
+      "boot_command": [
+        "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/fedora22.ks<enter>"
+      ],
+      "guest_os_type": "Fedora_64",
+      "http_directory": "manifests",
       "iso_checksum": "9f1f2f19f75cc3b97da41878b5c86188fa8d27ed446bd97d9df615c137c77cfc",
       "iso_checksum_type": "sha256",
       "iso_url": "http://download.fedoraproject.org/pub/fedora/linux/releases/22/Server/x86_64/iso/Fedora-Server-netinst-x86_64-22.iso",
@@ -26,61 +50,13 @@
     },
     {
       "boot_command": [
-        "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/fedora20.ks<enter>"
-      ],
-      "guest_os_type": "Fedora_64",
-      "http_directory": "manifests",
-      "iso_checksum": "56af126a50c227d779a200b414f68ea7bcf58e21c8035500cd21ba164f85b9b4",
-      "iso_checksum_type": "sha256",
-      "iso_url": "http://download.fedoraproject.org/pub/fedora/linux/releases/21/Server/x86_64/iso/Fedora-Server-netinst-x86_64-21.iso",
-      "name": "fedora-21",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "ssh_password": "vagrant",
-      "ssh_username": "vagrant",
-      "ssh_wait_timeout": "50000s",
-      "type": "virtualbox-iso",
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "1024"
-        ]
-      ]
-    },
-    {
-      "boot_command": [
-        "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/fedora20.ks<enter>"
-      ],
-      "guest_os_type": "Fedora_64",
-      "http_directory": "manifests",
-      "iso_checksum": "376be7d4855ad6281cb139430606a782fd6189dcb01d7b61448e915802cc350f",
-      "iso_checksum_type": "sha256",
-      "iso_url": "http://download.fedoraproject.org/pub/fedora/linux/releases/20/Fedora/x86_64/iso/Fedora-20-x86_64-netinst.iso",
-      "name": "fedora-20",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "ssh_password": "vagrant",
-      "ssh_username": "vagrant",
-      "ssh_wait_timeout": "50000s",
-      "type": "virtualbox-iso",
-      "vboxmanage": [
-        [
-          "modifyvm",
-          "{{.Name}}",
-          "--memory",
-          "1024"
-        ]
-      ]
-    },
-    {
-      "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/generic.ks<enter>"
       ],
       "guest_os_type": "RedHat_64",
       "http_directory": "manifests",
-      "iso_checksum": "e3afe3f1121d69c40cc23f0bafa05e5d",
-      "iso_checksum_type": "md5",
-      "iso_url": "http://mirrors.sonic.net/centos/7.0.1406/isos/x86_64/CentOS-7.0-1406-x86_64-Minimal.iso",
+      "iso_checksum": "7cf1ac8da13f54d6be41e3ccf228dc5bb35792f515642755ff4780d5714d4278",
+      "iso_checksum_type": "sha256",
+      "iso_url": "http://mirrors.sonic.net/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso",
       "name": "centos-7.0",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "ssh_password": "vagrant",
@@ -93,25 +69,10 @@
       ],
       "guest_os_type": "RedHat_64",
       "http_directory": "manifests",
-      "iso_checksum": "eb3c8be6ab668e6d83a118323a789e6c",
-      "iso_checksum_type": "md5",
-      "iso_url": "http://mirrors.sonic.net/centos/6.6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso",
-      "name": "centos-6.6",
-      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
-      "ssh_password": "vagrant",
-      "ssh_username": "vagrant",
-      "type": "virtualbox-iso"
-    },
-    {
-      "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/generic.ks<enter>"
-      ],
-      "guest_os_type": "RedHat_64",
-      "http_directory": "manifests",
-      "iso_checksum": "0d9dc37b5dd4befa1c440d2174e88a87",
-      "iso_checksum_type": "md5",
-      "iso_url": "http://mirrors.sonic.net/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
-      "name": "centos-6.5",
+      "iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
+      "iso_checksum_type": "sha256",
+      "iso_url": "http://mirrors.sonic.net/centos/6/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
+      "name": "centos-6.7",
       "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now",
       "ssh_password": "vagrant",
       "ssh_username": "vagrant",
