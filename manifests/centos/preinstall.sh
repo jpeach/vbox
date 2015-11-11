@@ -19,6 +19,19 @@ esac
 echo Installing puppet ...
 yum install -y puppet
 
+echo Installing Devtoolset-3 ...
+(
+    yum install -y scl-utils
+    case $(cat /etc/redhat-release) in
+        *7.[0-9]*)
+        rpm -ivh https://www.softwarecollections.org/en/scls/rhscl/devtoolset-3/epel-7-x86_64/download/rhscl-devtoolset-3-epel-7-x86_64.noarch.rpm
+        ;;
+    *6.[0-9]*)
+        rpm -ivh https://www.softwarecollections.org/en/scls/rhscl/devtoolset-3/epel-6-x86_64/download/rhscl-devtoolset-3-epel-6-x86_64.noarch.rpm
+        ;;
+    esac
+)
+
 echo Installing well-known vagrant SSH key ...
 (
     cd ~vagrant
