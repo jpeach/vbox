@@ -2,7 +2,11 @@
   "builders": [
     {
       "boot_command": [
-        "<tab> ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/fedora22.ks<enter>"
+        "<tab>",
+        " inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/fedora23.ks",
+        " inst.updates=https://fedorapeople.org/groups/qa/updates/1277638.img",
+        " biosdevname=0",
+        "<enter>"
       ],
       "guest_os_type": "Fedora_64",
       "http_directory": "manifests",
@@ -15,6 +19,7 @@
       "ssh_username": "vagrant",
       "ssh_wait_timeout": "50000s",
       "type": "virtualbox-iso",
+      "disk_size": 80000,
       "vboxmanage": [
         [
           "modifyvm",
