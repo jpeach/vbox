@@ -104,6 +104,15 @@
       "type": "shell"
     },
     {
+      "only": ["fedora-23", "fedora-22"],
+      "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
+      "scripts": [
+        "manifests/fedora/preinstall.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "only": ["centos-7.0", "centos-6.7"],
       "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S bash '{{ .Path }}'",
       "scripts": [
         "manifests/centos/preinstall.sh"
