@@ -7,6 +7,9 @@ Packer definitions to generate Vagrant boxes for:
     - CentOS 6.5
     - Fedora 20
     - Fedora 21
+    - Fedora 23
+
+Note that only the most recent OS versions tend to be tested.
 
 How to Build
 ------------
