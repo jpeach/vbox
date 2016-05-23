@@ -26,7 +26,7 @@ if $lsbmajdistrelease != '5' {
 
 # development extras.
 package {[
-    'gdb', 'valgrind', 'git', 'curl', 'screen', 'ccache'
+    'gdb', 'valgrind', 'git', 'curl', 'screen'
   ]:
   ensure => latest,
 }
