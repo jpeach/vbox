@@ -4,11 +4,11 @@
 
 echo Installing YUM repository for puppet ...
 case $VERSION_ID in
-    23)
+    23|24)
     cat > /etc/yum.repos.d/puppet.repo <<EOF
 [puppetlabs]
 name = Puppet Labs
-baseurl = https://yum.puppetlabs.com/fedora/f23/PC1/\$basearch
+baseurl = https://yum.puppetlabs.com/fedora/f${VERSION_ID}/PC1/\$basearch
 gpgkey = https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
 enabled = 1
 gpgcheck = 1
@@ -20,7 +20,7 @@ EOF
 esac
 
 echo Installing puppet ...
-dnf install -y puppet-agent
+dnf install -v -y puppet-agent
 
 echo Symlinking puppet binaries into /usr/sbin ...
 for prog in /opt/puppetlabs/bin/* ; do
@@ -32,8 +32,6 @@ echo Installing well-known vagrant SSH key ...
     cd ~vagrant
 
     mkdir -p .ssh
-    touch .ssh/authorized_keys
-
     curl -o .ssh/authorized_keys -kL 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
 
     chmod 700 .ssh
